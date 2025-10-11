@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>GHG-Driven Microbial Metal Recovery | BioMetaX</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    :root {
+      --primary: #00704A;
+      --bg: #f5f5f5;
+      --text: #333;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* Hero Section 背景 */
+    .hero {
+      background: linear-gradient(rgba(0,112,74,0.6), rgba(0,155,101,0.6)), url('logo.png') center/contain no-repeat;
+      color: white;
+      padding: 100px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      margin-bottom: 20px;
+    }
+
+    .hero p.lead {
+      font-size: 1.3rem;
+      max-width: 720px;
+      margin: 0 auto 24px;
+    }
+
+    .hero .links {
+      margin-top: 20px;
+    }
+
+    .btn {
+      display: inline-block;
+      background: white;
+      color: var(--primary);
+      padding: 10px 18px;
+      margin: 4px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+
+    .btn.primary {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn:hover {
+      opacity: 0.85;
+    }
+
+    .contact {
+      margin-top: 25px;
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+
+    /* Section */
+    .section {
+      max-width: 1000px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    .section h2 {
+      text-align: center;
+      font-size: 1.8rem;
+      margin-bottom: 30px;
+    }
+
+    /* Tech Section Layout + 背景 */
+    .tech-section {
+      background: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)), url('background.png') center/cover no-repeat;
+      border-radius: 12px;
+      padding: 60px 20px;
+    }
+
+    .tech-content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .tech-content img {
+      max-width: 450px;
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .tech-content .text {
+      max-width: 500px;
+    }
+
+    /* QR Section */
+    .qr-section {
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+
+    .qr-box img {
+      margin: 10px auto;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.85rem;
+      color: #666;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 768px) {
+      .tech-content {
+        flex-direction: column;
+      }
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .hero p.lead {
+        font-size: 1.1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Greenhouse Gas Driven Microbial Metal Recovery</h1>
+    <p class="lead">
+      Using waste gases and natural microbes to recover valuable metals, reduce pollution, and move toward net-zero emissions. Enabling a circular economy through clean, green, and sustainable technologies.
+    </p>
+
+    <div class="links">
+      <a class="btn primary" href="#tech-section" id="cta">Know more</a>
+      <a class="btn" href="mailto:suicao.wang@gmail.com">Contact</a>
+      <a class="btn" href="#" id="downloadLink">QR Code</a>
+    </div>
+
+    <div class="contact">
+      <strong>Dr. Suicao (Wally) Wang</strong><br>
+      The University of Queensland, QLD, Australia<br>
+      Email: suicao.wang@gmail.com
+    </div>
+  </section>
+
+  <!-- Technology Section -->
+  <section class="section tech-section" id="tech-section">
+    <h2>Our Novel Biological Technology</h2>
+    <div class="tech-content">
+      <img src="Framework.png" alt="Technology Diagram" />
+      <div class="text">
+        <p>
+          We use naturally enriched functional microorganisms to drive metal recovery (Gold, Silver, Nickel, Cobalt, Copper, Vanadium, Chromium, etc.) using waste gases (e.g. methane) from landfills and wastewater treatment plants.
+        </p>
+        <p>
+          This process reduces greenhouse gas emission while recovering valuable metals from electronic waste, spent batteries, and tailings. We are also developing platforms utilizing carbon dioxide, moving toward zero-carbon solutions.
+        </p>
+        <p>
+          We welcome collaborations with e-waste recyclers, battery manufacturers, tailings treatment operators, landfill gas suppliers, and wastewater treatment plants worldwide to expand the applications of our technology!
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- QR Section -->
+  <section class="section">
+    <div class="qr-section">
+      <h2>Scan to visit BioMetaX</h2>
+      <div id="qrcode" class="qr-box"></div>
+      <div style="font-size:0.9rem;color:#555;">Scan this QR code to open the webpage of BioMetaX</div>
+    </div>
+  </section>
+
+  <footer>© 2025 BioMetaX</footer>
+
+  <!-- QR Code Script -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script>
+    const qrcodeContainer = document.getElementById('qrcode');
+    const downloadLink = document.getElementById('downloadLink');
+
+    const currentUrl = location.href;
+    new QRCode(qrcodeContainer, {
+      text: currentUrl,
+      width: 180,
+      height: 180,
+      correctLevel: QRCode.CorrectLevel.H
+    });
+
+    downloadLink.addEventListener('click', (e)=>{
+      e.preventDefault();
+      const img = qrcodeContainer.querySelector('img');
+      const canvas = qrcodeContainer.querySelector('canvas');
+      let dataUrl = '';
+      if (img && img.src) dataUrl = img.src;
+      else if (canvas) dataUrl = canvas.toDataURL('image/png');
+
+      if (dataUrl) {
+        const a = document.createElement('a');
+        a.href = dataUrl;
+        a.download = 'qrcode.png';
+        a.click();
+      }
+    });
+  </script>
+</body>
+</html>
+
