@@ -16,10 +16,21 @@
       font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
       background: var(--bg);
       color: var(--text);
-      line-height: 1.6;
+      font-size: 1.1rem; /* ✅ 主体字体加大 */
+      line-height: 1.4;   /* ✅ 统一行距 */
     }
 
-    /* Hero Section 背景 */
+    /* ✅ 全局排版统一：段前段后 6pt + 行距一致 */
+    h1, h2, h3, h4, h5, h6, p {
+      margin-top: 6pt;
+      margin-bottom: 6pt;
+      line-height: 1.4;
+    }
+
+    p {
+      text-align: justify;
+    }
+
     .hero {
       background: linear-gradient(rgba(0,112,74,0.6), rgba(0,155,101,0.6)), url('logo.png') center/contain no-repeat;
       color: white;
@@ -32,17 +43,22 @@
 
     .hero h1 {
       font-size: 2.8rem;
-      margin-bottom: 20px;
+      margin-top: 6pt;
+      margin-bottom: 6pt;
+      line-height: 1.3;
     }
 
     .hero p.lead {
-      font-size: 1.3rem;
+      font-size: 1.4rem;
       max-width: 720px;
-      margin: 0 auto 24px;
+      margin-top: 6pt;
+      margin-bottom: 6pt;
+      line-height: 1.4;
+      text-align: center;
     }
 
     .hero .links {
-      margin-top: 20px;
+      margin-top: 12px;
     }
 
     .btn {
@@ -54,22 +70,88 @@
       border-radius: 4px;
       text-decoration: none;
       font-weight: 600;
-      transition: background 0.3s;
+      transition: background 0.3s, color 0.3s;
     }
 
-    .btn.primary {
+    /* ✅ The issue 按钮：白底绿字 + 无边框 */
+    .btn-issue {
+      background: white;
+      color: var(--primary);
+      border: none;
+    }
+    .btn-issue:hover {
+      background: #f0f0f0;
+    }
+
+    /* ✅ Our solution 按钮 */
+    .btn-solution {
+      background: white;
+      color: var(--primary);
+      border: none;
+    }
+    .btn-solution:hover {
       background: var(--primary);
       color: white;
     }
 
-    .btn:hover {
-      opacity: 0.85;
+    /* ✅ 联系方式 */
+    .contact {
+      margin-top: 40px;
+      display: flex;
+      justify-content: center;
     }
 
-    .contact {
-      margin-top: 25px;
-      font-size: 1.05rem;
-      line-height: 1.6;
+    .contact-container {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 24px;
+      max-width: 800px;
+      background: rgba(255, 255, 255, 0.15);
+      padding: 20px;
+      border-radius: 12px;
+      backdrop-filter: blur(6px);
+    }
+
+    .contact-photo img {
+      width: 140px;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 50%;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .contact-info {
+      flex: 1;
+      color: #fff;
+      font-size: 1rem;
+      line-height: 1.4;
+    }
+
+    .contact-info h3 {
+      margin-top: 6pt;
+      margin-bottom: 6pt;
+      font-size: 1.4rem;
+    }
+
+    .contact-info a {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+      .contact-container {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .contact-info {
+        font-size: 1.1rem;
+      }
+
+      .contact-info h3 {
+        font-size: 1.4rem;
+      }
     }
 
     /* Section */
@@ -77,15 +159,34 @@
       max-width: 1000px;
       margin: 60px auto;
       padding: 0 20px;
+      box-sizing: border-box;
     }
 
     .section h2 {
       text-align: center;
-      font-size: 1.8rem;
-      margin-bottom: 30px;
+      font-size: 1.9rem;
+      margin-top: 6pt;
+      margin-bottom: 6pt;
     }
 
-    /* Tech Section Layout + 背景 */
+    /* The issue Section */
+    .issue-content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .issue-content img {
+      max-width: 400px;
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    /* Tech Section */
     .tech-section {
       background: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)), url('background.png') center/cover no-repeat;
       border-radius: 12px;
@@ -111,7 +212,47 @@
       max-width: 500px;
     }
 
-    /* QR Section */
+    /* Our version */
+    #our-version {
+      background: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)), url('logo.png') center/contain no-repeat;
+      border-radius: 12px;
+      padding: 60px 20px;
+      margin: 40px auto;
+      max-width: 1000px;
+      text-align: justify;
+    }
+
+    /* News section */
+    #news {
+      background: white;
+      border-radius: 12px;
+      padding: 60px 20px;
+      margin: 40px auto;
+      max-width: 1000px;
+      box-sizing: border-box;
+    }
+
+    .news-content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .news-content img {
+      max-width: 450px;
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .news-content .text {
+      max-width: 500px;
+      text-align: justify;
+    }
+
+    /* QR section */
     .qr-section {
       background: white;
       padding: 30px;
@@ -133,54 +274,118 @@
     }
 
     @media (max-width: 768px) {
-      .tech-content {
+      .tech-content, .news-content, .issue-content {
         flex-direction: column;
       }
       .hero h1 {
         font-size: 2rem;
       }
       .hero p.lead {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Hero Section -->
+  <!-- Hero section -->
   <section class="hero">
-    <h1>Greenhouse Gas Driven Microbial Metal Recovery</h1>
+    <h1>Greenhouse gas driven microbial metal recovery</h1>
     <p class="lead">
-      Using waste gases and natural microbes to recover valuable metals, reduce pollution, and move toward net-zero emissions. Enabling a circular economy through clean, green, and sustainable technologies.
+      Using waste gases and natural microbes to recover valuable metals, reduce pollution, and move toward <strong>Net-Zero emissions</strong> by 2050. Enabling a circular economy via clean, green, and sustainable technologies.
     </p>
 
     <div class="links">
-      <a class="btn primary" href="#tech-section" id="cta">Know more</a>
-      <a class="btn" href="mailto:suicao.wang@gmail.com">Contact</a>
-      <a class="btn" href="#" id="downloadLink">QR Code</a>
+      <a class="btn btn-issue" href="#the-issue">The issue</a>  
+      <a class="btn btn-solution" href="#tech-section" id="cta">Our solution</a>
+      <a class="btn" href="#our-version">Our version</a>
+      <a class="btn" href="#news">News</a>
+      <a class="btn" href="#" id="downloadLink">QR code</a>
     </div>
 
     <div class="contact">
-      <strong>Dr. Suicao (Wally) Wang</strong><br>
-      The University of Queensland, QLD, Australia<br>
-      Email: suicao.wang@gmail.com
+  <div class="contact-container">
+    <div class="contact-photo">
+      <img src="wally.JPG" alt="Dr. Suicao (Wally) Wang">
+    </div>
+    <div class="contact-info">
+      <h3>Dr. Suicao (Wally) Wang</h3>
+      <p><strong>The University of Queensland</strong>, QLD, Australia</p>
+      <p>
+        A researcher specializing in <strong>methane-driven biotechnologies</strong> for metal recovery and carbon utilization.
+        Actively collaborating with industry and research partners to advance sustainable solutions.
+      </p>
+      <p>
+        Email: <a href="mailto:suicao.wang@gmail.com">suicao.wang@gmail.com</a>
+      </p>
+      </div>
+    </div>
+   </div>
+  </section>
+
+  <!-- The issue section -->
+  <section class="section" id="the-issue">
+    <h2>The issue</h2>
+    <div class="issue-content">
+      <div class="text">
+        <p>
+          Industries and the global community are racing toward <strong>Net-Zero emissions</strong> by 2050 under the Paris Agreement. 
+        </p>
+        <p>
+          Meanwhile, electronic waste and spent batteries are piling up — 2.6 million tons each year — with <strong>only ~20%</strong> being recycled. Boosting the recycling rate to 60% could unlock around <strong>USD 38 billion</strong> in value. 
+        </p>
+        <p>
+          At the same time, <strong>treating tailings</strong> while recovering metals creates a win-win solution for both the environment and industry.
+        </p>
+      </div>
+      <img src="battery_rate.png" alt="Battery Recycling Rate" />
     </div>
   </section>
 
-  <!-- Technology Section -->
+  <!-- Our solution / Tech Section -->
   <section class="section tech-section" id="tech-section">
-    <h2>Our Novel Biological Technology</h2>
+    <h2>Our solution</h2>
     <div class="tech-content">
       <img src="Framework.png" alt="Technology Diagram" />
       <div class="text">
         <p>
-          We use naturally enriched functional microorganisms to drive metal recovery (Gold, Silver, Nickel, Cobalt, Copper, Vanadium, Chromium, etc.) using waste gases (e.g. methane) from landfills and wastewater treatment plants.
+          To address these growing challenges, we have developed a novel biological solution.
         </p>
         <p>
-          This process reduces greenhouse gas emission while recovering valuable metals from electronic waste, spent batteries, and tailings. We are also developing platforms utilizing carbon dioxide, moving toward zero-carbon solutions.
+          We use naturally enriched functional microorganisms to recover metals 
+          (<strong>Gold, Nickel, and Cobalt</strong> etc.) using waste gases 
+          (including CH<sub>4</sub> and CO<sub>2</sub>) from landfills, syngases, or wastewater treatment plants.
         </p>
         <p>
-          We welcome global partnerships with e-waste recyclers, battery manufacturers, tailings treatment operators, landfill gas suppliers, and wastewater treatment plants to drive innovation and broaden the impact of our technology！
+          This process simultaneously cuts greenhouse gas emissions and recovers valuable metals from electronic waste, spent batteries, or tailings. We are also advancing carbon utilization platforms to move toward zero-carbon solutions.
+        </p>
+        <p>
+          We welcome global partnerships with e-waste recyclers, battery manufacturers, tailings operators, landfill gas suppliers, and wastewater treatment plants to drive innovation and scale our impact.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our version section -->
+  <section class="section" id="our-version">
+    <h2>Our version</h2>
+    <p>
+      We are currently planning to scale up our laboratory-level reactors to pilot-scale and are seeking more resources and collaborations. 
+    </p>
+    <p>
+      We are expanding the application scenarios of our technology in sectors such as <strong>e-waste recycling, spent battery treatment, metal catalyst development, tailings management, and heavy metal-containing wastewater treatment</strong>. 
+      We also welcome discussions and collaboration opportunities with <strong>landfill gas and wastewater treatment sectors</strong> to explore innovative solutions together.
+    </p>
+  </section>
+
+  <!-- News section -->
+  <section class="section" id="news">
+    <h2>News</h2>
+    <div class="news-content">
+      <img src="CSIRO.png" alt="CSIRO ON Prime" />
+      <div class="text">
+        <p>
+          Our breakthrough technology has been selected for the <strong>CSIRO-ON Prime</strong> program, Australia’s leading innovation accelerator. We have received enthusiastic feedback from stakeholders and achieved excellent outcomes. This enables us to refine our solution and fast-track its impact through real-world industry collaboration.
         </p>
       </div>
     </div>
@@ -202,7 +407,6 @@
   <script>
     const qrcodeContainer = document.getElementById('qrcode');
     const downloadLink = document.getElementById('downloadLink');
-
     const currentUrl = location.href;
     new QRCode(qrcodeContainer, {
       text: currentUrl,
@@ -229,5 +433,3 @@
   </script>
 </body>
 </html>
-
-
