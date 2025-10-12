@@ -35,7 +35,7 @@
       /* 深蓝紫色渐变叠加 + 背景图透明度高 */
       background: 
         linear-gradient(rgba(27, 42, 73, 0.88), rgba(27, 42, 73, 0.88)), /* 深蓝紫色半透明覆盖层 */
-        url('logo_bg.png') center/cover no-repeat; /* **修改：cover 替代contain, 让背景图铺满 */
+        url('logo_bg.png') no-repeat center top; /* **修改：cover 替代contain, 让背景图铺满 */
       background-blend-mode: overlay; /* 让渐变和图像融合 */
       color: white;
       padding: 100px 20px;
@@ -43,6 +43,7 @@
       flex-direction: column;
       align-items: center;
       text-align: center;
+      min-height: 100vh; /*保证高度覆盖屏幕*/
     }
 
     /* ✅ 将 hero h1 字体加大 */
@@ -120,8 +121,8 @@
     }
 
     .contact-photo img {
-      width: 120px; /* **修改: 缩小头像尺寸** */
-      height: 120px; /* **修改: 缩小头像尺寸** */
+      width: 140px; /* **修改: 缩小头像尺寸** */
+      height: 140px; /* **修改: 缩小头像尺寸** */
       object-fit: cover;
       border-radius: 50%;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
@@ -131,13 +132,13 @@
       flex: 1;
       color: #fff;
       font-size: 1rem;
-      line-height: 1.4;
+      line-height: 1.2;
     }
 
     .contact-info h3 {
       margin-top: 6pt;
       margin-bottom: 6pt;
-      font-size: 1.4rem;
+      font-size: 1.2rem;
     }
 
     .contact-info a {
@@ -453,6 +454,7 @@
   </script>
 </body>
 </html>
+
 
 
 
