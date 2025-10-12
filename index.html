@@ -32,7 +32,11 @@
     }
 
     .hero {
-      background: linear-gradient(rgba(0,112,74,0.6), rgba(0,155,101,0.6)), url('logo.png') center/contain no-repeat;
+      /* 深蓝紫色渐变叠加 + 背景图透明度高 */
+      background: 
+        linear-gradient(rgba(27, 42, 73, 0.88), rgba(27, 42, 73, 0.88)), /* 深蓝紫色半透明覆盖层 */
+        url('logo_bg.png') center/contain no-repeat; /* 背景图 */
+      background-blend-mode: overlay; /* 让渐变和图像融合 */
       color: white;
       padding: 100px 20px;
       display: flex;
@@ -41,15 +45,17 @@
       text-align: center;
     }
 
+    /* ✅ 将 hero h1 字体加大 */
     .hero h1 {
-      font-size: 2.8rem;
+      font-size: 3.4rem; /* **从 2.8rem 改为 3.4rem** */
       margin-top: 6pt;
       margin-bottom: 6pt;
       line-height: 1.3;
     }
 
+    /* ✅ 将 hero 副标题字体加大 */
     .hero p.lead {
-      font-size: 1.4rem;
+      font-size: 1.8rem; /* **从 1.4rem 改为 1.8rem** */
       max-width: 720px;
       margin-top: 6pt;
       margin-bottom: 6pt;
@@ -94,11 +100,20 @@
       color: white;
     }
 
-    /* ✅ 联系方式 */
-    .contact {
-      margin-top: 40px;
+    /* ✅ 联系方式：移出hero,作为单独section */
+    /* **新增：单独的联系人页 hero 背景** */
+    .hero-contact {
+      background: 
+        linear-gradient(rgba(27, 42, 73, 0.88), rgba(27, 42, 73, 0.88)), 
+        url('logo_bg.png') center/contain no-repeat;
+      background-blend-mode: overlay;
+      color: white;
+      padding: 100px 20px;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      min-height: 100vh;
     }
 
     .contact-container {
@@ -290,11 +305,9 @@
 
   <!-- Hero section -->
   <section class="hero">
-    <h1>Greenhouse gas driven microbial metal recovery</h1>
+    <h1>Two global challenges - One biotech solution</h1>
     <p class="lead">
-      Using waste gases and natural microbes to recover valuable metals, reduce pollution, and move toward <strong>Net-Zero emissions</strong> by 2050. Enabling a circular economy via clean, green, and sustainable technologies.
-    </p>
-
+      Powering metal recovery from waste using greenhouse gases and ultra-low-cost biotechnologies.
     <div class="links">
       <a class="btn btn-issue" href="#the-issue">The issue</a>  
       <a class="btn btn-solution" href="#tech-section" id="cta">Our solution</a>
@@ -312,8 +325,7 @@
       <h3>Dr. Suicao (Wally) Wang</h3>
       <p><strong>The University of Queensland</strong>, QLD, Australia</p>
       <p>
-        A researcher specializing in <strong>methane-driven biotechnologies</strong> for metal recovery and carbon utilization.
-        Actively collaborating with industry and research partners to advance sustainable solutions.
+        Founder & researcher advancing <strong>GHGs-driven biotechnologies</strong> for metal recovery, GHGs reduction, wastewater remediation, and translational research.
       </p>
       <p>
         Email: <a href="mailto:suicao.wang@gmail.com">suicao.wang@gmail.com</a>
@@ -382,14 +394,10 @@
   <section class="section" id="news">
     <h2>News</h2>
     <div class="news-content">
-      <img src="on_prime.png" alt="CSIRO ON Prime" />
+      <img src="CSIRO.png" alt="CSIRO ON Prime" />
       <div class="text">
         <p>
-          Our breakthrough technology has been selected for the <strong>CSIRO ON-Prime</strong> program, Australia’s leading innovation accelerator. 
-          </p>
-          <p>
-          We have received enthusiastic feedback from stakeholders and achieved excellent outcomes. We are advancing real-world applications through industry collaboration and customer discovery.
-          Learn more about the program <a href="https://www.csiro.au/en/work-with-us/funding-programs/innovation-programs/on-prime" target="_blank">here</a>.
+          Our breakthrough technology has been selected for the <strong>CSIRO-ON Prime</strong> program, Australia’s leading innovation accelerator. We have received enthusiastic feedback from stakeholders and achieved excellent outcomes. This enables us to refine our solution and fast-track its impact through real-world industry collaboration.
         </p>
       </div>
     </div>
@@ -437,7 +445,3 @@
   </script>
 </body>
 </html>
-
-
-
-
