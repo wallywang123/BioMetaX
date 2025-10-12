@@ -11,6 +11,14 @@
       --text: #333;
     }
 
+      .contact-photo img {
+      width: 140px;       /* 固定宽度 */
+      height: 140px;      /* 固定高度 */
+      object-fit: cover;  /* 保持比例裁剪 */
+      border-radius: 50%; /* 圆形头像 */
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
     body {
       margin: 0;
       font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -51,7 +59,7 @@
     }
 
     .hero p.lead {
-      font-size: 1.8rem;
+      font-size: 2rem;
       max-width: 720px;
       margin-top: 6pt;
       margin-bottom: 6pt;
@@ -172,7 +180,7 @@
         flex-direction: column;
       }
       .hero h1 {
-        font-size: 2rem;
+        font-size: 1.8rem;
       }
       .hero p.lead {
         font-size: 1.2rem;
@@ -320,3 +328,4 @@
   </script>
 </body>
 </html>
+
