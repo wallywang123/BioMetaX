@@ -35,7 +35,7 @@
       /* 深蓝紫色渐变叠加 + 背景图透明度高 */
       background: 
         linear-gradient(rgba(27, 42, 73, 0.88), rgba(27, 42, 73, 0.88)), /* 深蓝紫色半透明覆盖层 */
-        url('logo_bg.png') no-repeat center top; /* **修改：cover 替代contain, 让背景图铺满 */
+        url('logo_bg.png') no-repeat cover; /* **修改：cover 替代contain, 让背景图铺满 */
       background-blend-mode: overlay; /* 让渐变和图像融合 */
       color: white;
       padding: 100px 20px;
@@ -43,7 +43,6 @@
       flex-direction: column;
       align-items: center;
       text-align: center;
-      min-height: 100vh; /*保证高度覆盖屏幕*/
     }
 
     /* ✅ 将 hero h1 字体加大 */
@@ -171,7 +170,7 @@
 
     /* Section */
     .section {
-      max-width: 1000px;
+      max-width: 800px;
       margin: 60px auto;
       padding: 0 20px;
       box-sizing: border-box;
@@ -186,16 +185,15 @@
 
     /* The issue Section */
     .issue-content {
-      max-width: 500px; /*限制文本宽度*/
+      max-width: 300px; /*限制文本宽度*/
       display: flex;
       flex-wrap: wrap;
       gap: 20px;
-      align-items: center;
-      justify-content: center;
+      text-align: justify;
     }
 
     .issue-content img {
-      max-width: 400px;
+      max-width: 300px;
       width: 100%;
       height: auto;
       border-radius: 8px;
@@ -457,6 +455,7 @@
   </script>
 </body>
 </html>
+
 
 
 
