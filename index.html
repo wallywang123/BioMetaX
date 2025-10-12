@@ -9,123 +9,250 @@
       --primary: #00704A;
       --bg: #f5f5f5;
       --text: #333;
+      --nav-height: 64px;
     }
 
+    /* Reset / base */
+    * { box-sizing: border-box; }
+    html,body { height:100%; }
     body {
       margin: 0;
       font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
       background: var(--bg);
       color: var(--text);
-      font-size: 1.1rem; /* ✅ 主体字体加大 */
-      line-height: 1.4;   /* ✅ 统一行距 */
+      font-size: 16px;
+      line-height: 1.5;
+      -webkit-font-smoothing:antialiased;
+      scroll-behavior: smooth;
     }
 
-    /* ✅ 全局排版统一：段前段后 6pt + 行距一致 */
-    h1, h2, h3, h4, h5, h6, p {
-      margin-top: 6pt;
-      margin-bottom: 6pt;
-      line-height: 1.4;
-    }
+    h1, h2, h3, p { margin: 6pt 0; }
 
-    p {
-      text-align: justify;
-    }
-
-    .hero {
-      /* 深蓝紫色渐变叠加 + 背景图透明度高 */
-      background: 
-        linear-gradient(rgba(27, 42, 73, 0.88), rgba(27, 42, 73, 0.88)), /* 深蓝紫色半透明覆盖层 */
-        url('logo_bg.png') center/contain no-repeat; /* 背景图 */
-      background-blend-mode: overlay; /* 让渐变和图像融合 */
-      color: white;
-      padding: 100px 20px;
+    /* Fixed top navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: var(--nav-height);
       display: flex;
-      flex-direction: column;
       align-items: center;
-      text-align: center;
+      justify-content: space-between;
+      padding: 0 22px;
+      z-index: 1200;
+      background: rgba(27,42,73,0.72);
+      backdrop-filter: blur(6px);
+      box-shadow: 0 6px 18px rgba(3,12,30,0.18);
     }
 
-    /* ✅ 将 hero h1 字体加大 */
-    .hero h1 {
-      font-size: 3.4rem; /* **从 2.8rem 改为 3.4rem** */
-      margin-top: 6pt;
-      margin-bottom: 6pt;
-      line-height: 1.3;
+    nav .logo {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: 0.6px;
     }
 
-    /* ✅ 将 hero 副标题字体加大 */
-    .hero p.lead {
-      font-size: 1.8rem; /* **从 1.4rem 改为 1.8rem** */
-      max-width: 720px;
-      margin-top: 6pt;
-      margin-bottom: 6pt;
-      line-height: 1.4;
-      text-align: center;
+    nav .nav-links {
+      display: flex;
+      gap: 16px;
+      align-items: center;
     }
 
-    .hero .links {
-      margin-top: 12px;
-    }
-
-    .btn {
-      display: inline-block;
-      background: white;
-      color: var(--primary);
-      padding: 10px 18px;
-      margin: 4px;
-      border-radius: 4px;
+    nav .nav-links a {
+      color: #fff;
       text-decoration: none;
-      font-weight: 600;
-      transition: background 0.3s, color 0.3s;
+      padding: 8px 10px;
+      border-radius: 6px;
+      font-weight: 700; /* <- make nav text bold */
+      transition: background 0.18s, color 0.18s, transform 0.12s;
+      font-size: 0.95rem;
     }
 
-    /* ✅ The issue 按钮：白底绿字 + 无边框 */
-    .btn-issue {
-      background: white;
-      color: var(--primary);
-      border: none;
-    }
-    .btn-issue:hover {
-      background: #f0f0f0;
+    nav .nav-links a:hover {
+      background: rgba(255,255,255,0.08);
+      transform: translateY(-1px);
     }
 
-    /* ✅ Our solution 按钮 */
-    .btn-solution {
-      background: white;
-      color: var(--primary);
-      border: none;
-    }
-    .btn-solution:hover {
-      background: var(--primary);
-      color: white;
-    }
-
-    /* ✅ 联系方式：移出hero,作为单独section */
-    /* **新增：单独的联系人页 hero 背景** */
-    .hero-contact {
-      background: 
-        linear-gradient(rgba(27, 42, 73, 0.88), rgba(27, 42, 73, 0.88)), 
-        url('logo_bg.png') center/contain no-repeat;
-      background-blend-mode: overlay;
-      color: white;
-      padding: 100px 20px;
-      display: flex;
-      flex-direction: column;
+    /* Mobile toggle */
+    .nav-toggle {
+      display: none;
+      width: 40px;
+      height: 32px;
       align-items: center;
-      text-align: center;
-      min-height: 100vh;
+      justify-content: center;
+      cursor: pointer;
+    }
+    .nav-toggle span{
+      display:block; width:24px; height:2px; background:#fff; margin:3px 0; border-radius:2px;
     }
 
-    .contact-container {
+    @media (max-width: 768px) {
+      .nav-toggle { display:flex; }
+      nav .nav-links { 
+        display: none;
+        position: absolute;
+        right: 12px;
+        top: var(--nav-height);
+        background: rgba(27,42,73,0.98);
+        padding: 12px;
+        border-radius: 10px;
+        flex-direction: column;
+        gap: 6px;
+        min-width: 160px;
+        box-shadow: 0 8px 24px rgba(2,8,20,0.35);
+      }
+      nav .nav-links.active { display: flex; }
+    }
+
+    /* ensure sections aren't hidden under fixed nav */
+    section { scroll-margin-top: calc(var(--nav-height) + 12px); }
+
+    /* HERO - mysterious style, clearer text */
+    .hero {
+      position: relative;
+      min-height: 72vh;
+      padding: calc(var(--nav-height) + 48px) 20px 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+      /* Multi-layer background for "mystery" effect:
+         1) radial dark vignette
+         2) deep gradient overlay
+         3) subtle pattern / image (use your file logo_bg.png or another hero image)
+      */
+      background:
+        radial-gradient(ellipse at 30% 20%, rgba(5,8,15,0.35) 0%, rgba(10,14,22,0.45) 28%, rgba(5,8,20,0.65) 60%), /* brightness up */
+        linear-gradient(180deg, rgba(27,42,73,0.75), rgba(5,8,20,0.8)), /* less dark */
+        url('logo_bg.png') center/cover no-repeat;
+      background-blend-mode: overlay;
+      overflow: hidden;
+    }
+
+    /* subtle moving star-like noise (pure CSS, low-cost) */
+    .hero::after{
+      content:'';
+      position:absolute; inset:0;
+      background-image:
+         radial-gradient(circle at 10% 20%, rgba(255,255,255,0.02) 0 1px, transparent 1px),
+         radial-gradient(circle at 70% 80%, rgba(255,255,255,0.02) 0 1px, transparent 1px);
+      background-size: 140px 140px, 200px 200px;
+      opacity: 0.8;
+      mix-blend-mode: overlay;
+      pointer-events: none;
+      filter: blur(10px) contrast(0.9);
+    }
+
+    .hero .inner {
+      position: relative; /* above the ::after layer */
+      max-width: 920px;
+      padding: 10px 18px;
+    }
+
+    .hero h1 {
+      font-size: 3.2rem;
+      margin-bottom: 8px;
+      font-weight: 800; /* bold */
+      letter-spacing: -0.6px;
+      line-height: 1.08;
+      text-shadow: 0 10px 30px rgba(3,8,14,0.6), 0 2px 8px rgba(0,0,0,0.45);
+    }
+
+    .hero p.lead {
+      font-size: 2rem;
+      max-width: 820px;
+      margin: 10px auto 0;
+      font-weight: 600;
+      color: rgba(255,255,255,0.95);
+      text-shadow: 0 6px 18px rgba(3,8,14,0.45);
+    }
+
+    /* SECTION container */
+    .section {
+      max-width: 1000px;
+      margin: 64px auto;
+      padding: 0 20px;
+      box-sizing: border-box;
+    }
+    .section h2 {
+      text-align: center;
+      font-size: 1.9rem;
+      margin-bottom: 18px;
+    }
+
+    .flex-content {
       display: flex;
       flex-wrap: wrap;
-      align-items: center;
       gap: 24px;
-      max-width: 800px;
-      background: rgba(255, 255, 255, 0.15);
+      align-items: center;
+      justify-content: center;
+    }
+
+    .flex-content img {
+      max-width: 450px;
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 6px 18px rgba(2,10,20,0.08);
+    }
+
+    .flex-content .text {
+      max-width: 520px;
+      text-align: justify;
+      color: #222;
+    }
+
+    /* Tech section */
+    .tech-section {
+      background: linear-gradient(rgba(255,255,255,0.92), rgba(255,255,255,0.92));
+      border-radius: 12px;
+      padding: 44px 20px;
+    }
+
+    /* Our version - use logo.png as background but keep text readable */
+    #our-version {
+      background:
+        linear-gradient(rgba(230, 255, 240, 0.92), rgba(230, 255, 240, 0.92)), /* light green overlay */
+        url('logo.png') center/contain no-repeat;
+        url('logo1.png') center/contain no-repeat; /* <-- uses logo.png as background */
+      background-blend-mode: overlay;
+      border-radius: 12px;
+      padding: 48px 20px;
+      margin: 20px auto;
+      max-width: 1000px;
+      text-align: justify; /* match other sections */
+      color: #222;
+      box-shadow: 0 6px 18px rgba(2,8,20,0.04);
+    }
+    #our-version p { max-width: 980px; margin: 14px auto; line-height:1.6; }
+
+    /* News */
+    #news {
+      background: white;
+      border-radius: 12px;
+      padding: 40px 20px;
+      box-shadow: 0 6px 18px rgba(2,8,20,0.04);
+    }
+    .news-content .text { color:#222; text-align:justify; }
+
+    /* Contact - now white card for readability */
+    .contact-section {
+      padding: 60px 20px 80px;
+      background: linear-gradient(180deg, rgba(10,14,22,0.95), rgba(27,42,73,0.95));
+      color: #fff;
+    }
+
+    .contact-card {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      gap: 22px;
+      align-items: center;
+      background: #ffffff; /* white card for clarity */
+      color: #111;
       padding: 20px;
       border-radius: 12px;
-      backdrop-filter: blur(6px);
+      box-shadow: 0 12px 30px rgba(2,12,30,0.14);
     }
 
     .contact-photo img {
@@ -133,320 +260,146 @@
       height: 140px;
       object-fit: cover;
       border-radius: 50%;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 8px 20px rgba(2,12,30,0.12);
     }
 
-    .contact-info {
-      flex: 1;
-      color: #fff;
-      font-size: 1rem;
-      line-height: 1.4;
-    }
+    .contact-info { flex:1; text-align:left; }
+    .contact-info h3 { margin:0 0 6px 0; font-size:1.3rem; font-weight:800; color:#0b2b1f; }
+    .contact-info p { margin:6px 0; color:#1a1a1a; line-height:1.5; font-size:0.98rem; }
 
-    .contact-info h3 {
-      margin-top: 6pt;
-      margin-bottom: 6pt;
-      font-size: 1.4rem;
-    }
+    .contact-info a { color: var(--primary); text-decoration: none; font-weight:700; }
+    .contact-info a:hover { text-decoration: underline; }
 
-    .contact-info a {
-      color: #fff;
-      text-decoration: underline;
-    }
-
-    @media (max-width: 600px) {
-      .contact-container {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .contact-info {
-        font-size: 1.1rem;
-      }
-
-      .contact-info h3 {
-        font-size: 1.4rem;
-      }
-    }
-
-    /* Section */
-    .section {
-      max-width: 1000px;
-      margin: 60px auto;
-      padding: 0 20px;
-      box-sizing: border-box;
-    }
-
-    .section h2 {
-      text-align: center;
-      font-size: 1.9rem;
-      margin-top: 6pt;
-      margin-bottom: 6pt;
-    }
-
-    /* The issue Section */
-    .issue-content {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .issue-content img {
-      max-width: 400px;
-      width: 100%;
-      height: auto;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-
-    /* Tech Section */
-    .tech-section {
-      background: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)), url('background.png') center/cover no-repeat;
-      border-radius: 12px;
-      padding: 60px 20px;
-    }
-
-    .tech-content {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 24px;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .tech-content img {
-      max-width: 450px;
-      width: 100%;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-
-    .tech-content .text {
-      max-width: 500px;
-    }
-
-    /* Our version */
-    #our-version {
-      background: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)), url('logo.png') center/contain no-repeat;
-      border-radius: 12px;
-      padding: 60px 20px;
-      margin: 40px auto;
-      max-width: 1000px;
-      text-align: justify;
-    }
-
-    /* News section */
-    #news {
-      background: white;
-      border-radius: 12px;
-      padding: 60px 20px;
-      margin: 40px auto;
-      max-width: 1000px;
-      box-sizing: border-box;
-    }
-
-    .news-content {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 24px;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .news-content img {
-      max-width: 450px;
-      width: 100%;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-
-    .news-content .text {
-      max-width: 500px;
-      text-align: justify;
-    }
-
-    /* QR section */
-    .qr-section {
-      background: white;
-      padding: 30px;
-      border-radius: 8px;
-      text-align: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    }
-
-    .qr-box img {
-      margin: 10px auto;
+    @media (max-width: 760px) {
+      .contact-card { flex-direction: column; text-align:center; padding:18px; }
+      .contact-info { text-align:center; }
+      .hero h1 { font-size: 2.1rem; }
+      .hero p.lead { font-size: 1.05rem; }
+      .flex-content { flex-direction: column; }
     }
 
     footer {
       text-align: center;
       padding: 20px;
-      font-size: 0.85rem;
+      font-size: 0.88rem;
       color: #666;
-      margin-top: 40px;
-    }
-
-    @media (max-width: 768px) {
-      .tech-content, .news-content, .issue-content {
-        flex-direction: column;
-      }
-      .hero h1 {
-        font-size: 2rem;
-      }
-      .hero p.lead {
-        font-size: 1.2rem;
-      }
+      margin-top: 32px;
     }
   </style>
 </head>
 <body>
 
-  <!-- Hero section -->
-  <section class="hero">
-    <h1>Two global challenges - One biotech solution</h1>
-    <p class="lead">
-      Powering metal recovery from waste using greenhouse gases and ultra-low-cost biotechnologies.
-    <div class="links">
-      <a class="btn btn-issue" href="#the-issue">The issue</a>  
-      <a class="btn btn-solution" href="#tech-section" id="cta">Our solution</a>
-      <a class="btn" href="#our-version">Our version</a>
-      <a class="btn" href="#news">News</a>
-      <a class="btn" href="#" id="downloadLink">QR code</a>
+  <!-- Top Navigation -->
+  <nav>
+    <div class="logo">BioMetaX</div>
+    <div class="nav-toggle" id="navToggle" aria-label="Toggle navigation" role="button" tabindex="0">
+      <span></span><span></span><span></span>
     </div>
+    <div class="nav-links" id="navLinks" aria-hidden="true">
+      <a href="#hero">Home</a>
+      <a href="#the-issue">The Issue</a>
+      <a href="#tech-section">Our Solution</a>
+      <a href="#our-version">Our Version</a>
+      <a href="#news">News</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
 
-    <div class="contact">
-  <div class="contact-container">
-    <div class="contact-photo">
-      <img src="wally.JPG" alt="Dr. Suicao (Wally) Wang">
+  <!-- HERO (no buttons here per your request) -->
+  <section class="hero" id="hero" aria-label="Home">
+    <div class="inner">
+      <h1>Two global challenges — one biotech solution</h1>
+      <p class="lead">Powering metal recovery from waste using greenhouse gases and ultra-low-cost biotechnologies.</p>
+      <!-- Buttons intentionally removed (navigation is at the top) -->
     </div>
-    <div class="contact-info">
-      <h3>Dr. Suicao (Wally) Wang</h3>
-      <p><strong>The University of Queensland</strong>, QLD, Australia</p>
-      <p>
-        Founder & researcher 
-      </p>
-      <p>
-        Advancing <strong>GHGs-driven biotechnologies</strong> for metal recovery, GHGs reduction, wastewater remediation, and translational reserach.
-      <p>
-        Email: <a href="mailto:suicao.wang@gmail.com">suicao.wang@gmail.com</a>
-      </p>
-      </div>
-    </div>
-   </div>
   </section>
 
-  <!-- The issue section -->
+  <!-- Issue -->
   <section class="section" id="the-issue">
-    <h2>The issue</h2>
-    <div class="issue-content">
+    <h2>The Issue</h2>
+    <div class="flex-content">
       <div class="text">
-        <p>
-          Industries and the global community are racing toward <strong>Net-Zero emissions</strong> by 2050 under the Paris Agreement. 
-        </p>
-        <p>
-          Meanwhile, electronic waste and spent batteries are piling up — 2.6 million tons each year — with <strong>only ~20%</strong> being recycled. Boosting the recycling rate to 60% could unlock around <strong>USD 38 billion</strong> in value. 
-        </p>
-        <p>
-          At the same time, <strong>treating tailings</strong> while recovering metals creates a win-win solution for both the environment and industry.
-        </p>
+        <p>Industries and the global community are racing toward <strong>Net-Zero emissions</strong> by 2050 under the Paris Agreement.</p>
+        <p>Meanwhile, electronic waste and spent batteries are piling up — 2.6 million tons each year — with <strong>only ~20%</strong> being recycled. Boosting the recycling rate to 60% could unlock around <strong>USD 38 billion</strong> in value.</p>
+        <p>Treating tailings while recovering metals creates a win-win solution for both the environment and industry.</p>
       </div>
       <img src="battery_rate.png" alt="Battery Recycling Rate" />
     </div>
   </section>
 
-  <!-- Our solution / Tech Section -->
+  <!-- Tech -->
   <section class="section tech-section" id="tech-section">
-    <h2>Our solution</h2>
-    <div class="tech-content">
+    <h2>Our Solution</h2>
+    <div class="flex-content">
       <img src="Framework.png" alt="Technology Diagram" />
       <div class="text">
-        <p>
-          To address these growing challenges, we have developed a novel biological solution.
-        </p>
-        <p>
-          We use naturally enriched functional microorganisms to recover metals 
-          (<strong>Gold, Nickel, and Cobalt</strong> etc.) using waste gases 
-          (including CH<sub>4</sub> and CO<sub>2</sub>) from landfills, syngases, or wastewater treatment plants.
-        </p>
-        <p>
-          This process simultaneously cuts greenhouse gas emissions and recovers valuable metals from electronic waste, spent batteries, or tailings. We are also advancing carbon utilization platforms to move toward zero-carbon solutions.
-        </p>
-        <p>
-          We welcome global partnerships with e-waste recyclers, battery manufacturers, tailings operators, landfill gas suppliers, and wastewater treatment plants to drive innovation and scale our impact.
-        </p>
+        <p>We use naturally enriched functional microorganisms to recover metals (<strong>Gold, Nickel, and Cobalt</strong>) using waste gases (including CH<sub>4</sub> and CO<sub>2</sub>) from landfills, syngases, or wastewater treatment plants.</p>
+        <p>This process simultaneously cuts greenhouse gas emissions and recovers valuable metals from electronic waste, spent batteries, or tailings.</p>
       </div>
     </div>
   </section>
 
-  <!-- Our version section -->
+  <!-- Our version (uses logo.png as background image for visual interest) -->
   <section class="section" id="our-version">
-    <h2>Our version</h2>
-    <p>
-      We are currently planning to scale up our laboratory-level reactors to pilot-scale and are seeking more resources and collaborations. 
-    </p>
-    <p>
-      We are expanding the application scenarios of our technology in sectors such as <strong>e-waste recycling, spent battery treatment, metal catalyst development, tailings management, and heavy metal-containing wastewater treatment</strong>. 
-      We also welcome discussions and collaboration opportunities with <strong>landfill gas and wastewater treatment sectors</strong> to explore innovative solutions together.
-    </p>
+    <h2>Our Version</h2>
+    <p>We are currently planning to scale up our laboratory-level reactors to pilot-scale and are seeking more resources and collaborations.</p>
+    <p>We are expanding applications in <strong>e-waste recycling, spent battery treatment, tailings management, and heavy metal-containing wastewater treatment</strong>. We also welcome discussions with landfill gas and wastewater treatment sectors to explore innovative solutions together.</p>
   </section>
 
-  <!-- News section -->
+  <!-- News -->
   <section class="section" id="news">
     <h2>News</h2>
-    <div class="news-content">
+    <div class="flex-content news-content">
       <img src="on_prime.png" alt="CSIRO ON Prime" />
       <div class="text">
-        <p>
-          Our breakthrough technology has been selected for the <strong>CSIRO-ON Prime</strong> program, Australia’s leading innovation accelerator. We have received enthusiastic feedback from stakeholders and achieved excellent outcomes. This enables us to refine our solution and fast-track its impact through real-world industry collaboration.
-        </p>
+        <p>Our breakthrough technology has been selected for the <strong>CSIRO-ON Prime</strong> program, Australia’s leading innovation accelerator. We have received enthusiastic feedback from stakeholders and achieved excellent outcomes, helping us fast-track real-world impact through industry collaboration.</p>
       </div>
     </div>
   </section>
 
-  <!-- QR Section -->
-  <section class="section">
-    <div class="qr-section">
-      <h2>Scan to visit BioMetaX</h2>
-      <div id="qrcode" class="qr-box"></div>
-      <div style="font-size:0.9rem;color:#555;">Scan this QR code to open the webpage of BioMetaX</div>
+  <!-- Contact (moved to bottom; white card for readability) -->
+  <section class="contact-section" id="contact" aria-label="Contact">
+    <div class="contact-card" role="region" aria-labelledby="contactTitle">
+      <div class="contact-photo">
+        <img src="wally.JPG" alt="Dr. Suicao (Wally) Wang">
+      </div>
+      <div class="contact-info">
+        <h3 id="contactTitle">Dr. Suicao (Wally) Wang</h3>
+        <p><strong>The University of Queensland</strong>, QLD, Australia</p>
+        <p>Founder & Researcher, BioMetaX</p>
+        <p>Advancing <strong>GHGs-driven biotechnologies</strong> for metal recovery, greenhouse gas reduction, wastewater remediation, and translational research.</p>
+        <p>Email: <a href="mailto:suicao.wang@gmail.com">suicao.wang@gmail.com</a></p>
+      </div>
     </div>
   </section>
 
   <footer>© 2025 BioMetaX</footer>
 
-  <!-- QR Code Script -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <!-- Optional: QR code script remains in case you still want the QR section later -->
   <script>
-    const qrcodeContainer = document.getElementById('qrcode');
-    const downloadLink = document.getElementById('downloadLink');
-    const currentUrl = location.href;
-    new QRCode(qrcodeContainer, {
-      text: currentUrl,
-      width: 180,
-      height: 180,
-      correctLevel: QRCode.CorrectLevel.H
+    // Mobile nav toggle & close on link click
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    navToggle.addEventListener('click', () => {
+      const active = navLinks.classList.toggle('active');
+      navLinks.setAttribute('aria-hidden', String(!active));
     });
 
-    downloadLink.addEventListener('click', (e)=>{
-      e.preventDefault();
-      const img = qrcodeContainer.querySelector('img');
-      const canvas = qrcodeContainer.querySelector('canvas');
-      let dataUrl = '';
-      if (img && img.src) dataUrl = img.src;
-      else if (canvas) dataUrl = canvas.toDataURL('image/png');
+    // Close mobile menu when a link is clicked
+    document.querySelectorAll('#navLinks a').forEach(a=>{
+      a.addEventListener('click', ()=> {
+        if (navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          navLinks.setAttribute('aria-hidden', 'true');
+        }
+      });
+    });
 
-      if (dataUrl) {
-        const a = document.createElement('a');
-        a.href = dataUrl;
-        a.download = 'qrcode.png';
-        a.click();
-      }
+    // Accessibility: allow Enter key on toggle
+    navToggle.addEventListener('keyup', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') navToggle.click();
     });
   </script>
 </body>
 </html>
-
-
-
