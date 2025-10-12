@@ -184,18 +184,17 @@
     }
 
     /* The issue Section */
-    .issue-content {
-      max-width: 300px; /*限制文本宽度*/
+    .tech-content {
       display: flex;
       flex-wrap: wrap;
-      gap: 20px;
-      text-align: justify;
+      gap: 24px;
+      align-items: center;
+      justify-content: center;
     }
 
-    .issue-content img {
-      max-width: 300px;
+    .tech-content img {
+      max-width: 450px;
       width: 100%;
-      height: auto;
       border-radius: 8px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
@@ -341,7 +340,8 @@
   <!-- The issue section -->
   <section class="section" id="the-issue">
     <h2>The issue</h2>
-    <div class="issue-content">
+    <div class="tech-content"> <!-- ✅ 修改：统一类名，和 Our solution 一样 -->
+      <img src="battery_rate.png" alt="Battery Recycling Rate" /> <!-- 图片在前，可调顺序 -->
       <div class="text">
         <p>
           Industries and the global community are racing toward <strong>Net-Zero emissions</strong> by 2050 under the Paris Agreement. 
@@ -456,6 +456,7 @@
   </script>
 </body>
 </html>
+
 
 
 
