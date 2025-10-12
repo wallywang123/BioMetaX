@@ -35,7 +35,7 @@
       /* 深蓝紫色渐变叠加 + 背景图透明度高 */
       background: 
         linear-gradient(rgba(27, 42, 73, 0.88), rgba(27, 42, 73, 0.88)), /* 深蓝紫色半透明覆盖层 */
-        url('logo_bg.png') no-repeat cover; /* **修改：cover 替代contain, 让背景图铺满 */
+        url('logo_bg.png') center/contain no-repeat; /* 背景图 */
       background-blend-mode: overlay; /* 让渐变和图像融合 */
       color: white;
       padding: 100px 20px;
@@ -100,28 +100,37 @@
       color: white;
     }
 
-    /* ✅ 联系方式*/
-    .contact { 
-      margin-top: 40px; 
-      display: flex; 
-      justify-content: center; 
+    /* ✅ 联系方式：移出hero,作为单独section */
+    /* **新增：单独的联系人页 hero 背景** */
+    .hero-contact {
+      background: 
+        linear-gradient(rgba(27, 42, 73, 0.88), rgba(27, 42, 73, 0.88)), 
+        url('logo_bg.png') center/contain no-repeat;
+      background-blend-mode: overlay;
+      color: white;
+      padding: 100px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      min-height: 100vh;
     }
 
     .contact-container {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      gap: 16px; /* **修改: 缩小间距** */
-      max-width: 700px; /* **修改: 缩小整体宽度** */
+      gap: 24px;
+      max-width: 800px;
       background: rgba(255, 255, 255, 0.15);
-      padding: 12px 16px; /* **修改: 缩小 padding** */
+      padding: 20px;
       border-radius: 12px;
       backdrop-filter: blur(6px);
     }
 
     .contact-photo img {
-      width: 140px; /* **修改: 缩小头像尺寸** */
-      height: 140px; /* **修改: 缩小头像尺寸** */
+      width: 140px;
+      height: 140px;
       object-fit: cover;
       border-radius: 50%;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
@@ -131,13 +140,13 @@
       flex: 1;
       color: #fff;
       font-size: 1rem;
-      line-height: 1.2;
+      line-height: 1.4;
     }
 
     .contact-info h3 {
       margin-top: 6pt;
       margin-bottom: 6pt;
-      font-size: 1.2rem;
+      font-size: 1.4rem;
     }
 
     .contact-info a {
@@ -149,19 +158,11 @@
       .contact-container {
         flex-direction: column;
         text-align: center;
-        max-width: 90%; /* **修改: 移动端宽度更适合屏幕** */
-    padding: 12px;  /* **修改: 缩小 padding** */
-      }
-
-      .contact-photo img {
-        width: 80px;  /* **修改: 移动端进一步缩小头像** */
-        height: 80px; /* **修改: 移动端进一步缩小头像** */
       }
 
       .contact-info {
-        font-size: 1rem; /* **修改: 移动端字体略小** */
+        font-size: 1.1rem;
       }
-    }
 
       .contact-info h3 {
         font-size: 1.4rem;
@@ -184,17 +185,18 @@
     }
 
     /* The issue Section */
-    .tech-content {
+    .issue-content {
       display: flex;
       flex-wrap: wrap;
-      gap: 24px;
+      gap: 20px;
       align-items: center;
       justify-content: center;
     }
 
-    .tech-content img {
-      max-width: 450px;
+    .issue-content img {
+      max-width: 400px;
       width: 100%;
+      height: auto;
       border-radius: 8px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
@@ -234,16 +236,7 @@
       max-width: 1000px;
       text-align: justify;
     }
-    
-    #news {
-      background: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)), url('logo.png') center/contain no-repeat;
-      border-radius: 12px;
-      padding: 60px 20px;
-      margin: 40px auto;
-      max-width: 1000px;
-      text-align: justify;
-    }
-    
+
     /* News section */
     #news {
       background: white;
@@ -254,6 +247,14 @@
       box-sizing: border-box;
     }
 
+    .news-content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      align-items: center;
+      justify-content: center;
+    }
+
     .news-content img {
       max-width: 450px;
       width: 100%;
@@ -262,7 +263,7 @@
     }
 
     .news-content .text {
-      max-width: 1000px;
+      max-width: 500px;
       text-align: justify;
     }
 
@@ -324,10 +325,7 @@
       <h3>Dr. Suicao (Wally) Wang</h3>
       <p><strong>The University of Queensland</strong>, QLD, Australia</p>
       <p>
-        Founder & researcher 
-      </p>
-      <p>
-        Advancing <strong>GHGs-driven biotechnologies</strong> for metal recovery, GHGs reduction, wastewater remediation, and translational research.
+        Founder & researcher advancing <strong>GHGs-driven biotechnologies</strong> for metal recovery, GHGs reduction, wastewater remediation, and translational research.
       </p>
       <p>
         Email: <a href="mailto:suicao.wang@gmail.com">suicao.wang@gmail.com</a>
@@ -340,17 +338,13 @@
   <!-- The issue section -->
   <section class="section" id="the-issue">
     <h2>The issue</h2>
-    <div class="tech-content"> <!-- ✅ 修改：统一类名，和 Our solution 一样 -->
-      <img src="battery_rate.png" alt="Battery Recycling Rate" /> <!-- 图片在前，可调顺序 -->
+    <div class="issue-content">
       <div class="text">
         <p>
           Industries and the global community are racing toward <strong>Net-Zero emissions</strong> by 2050 under the Paris Agreement. 
         </p>
         <p>
-          Meanwhile, electronic waste and spent batteries are piling up — 2.6 million tons each year — with <strong>only ~20%</strong> being recycled.
-        </p>
-        <p>
-          Boosting the recycling rate to 60% could unlock around <strong>USD 38 billion</strong> in value. 
+          Meanwhile, electronic waste and spent batteries are piling up — 2.6 million tons each year — with <strong>only ~20%</strong> being recycled. Boosting the recycling rate to 60% could unlock around <strong>USD 38 billion</strong> in value. 
         </p>
         <p>
           At the same time, <strong>treating tailings</strong> while recovering metals creates a win-win solution for both the environment and industry.
@@ -367,8 +361,7 @@
       <img src="Framework.png" alt="Technology Diagram" />
       <div class="text">
         <p>
-          To address metallurgy, tailings, and landfills challenges, reduce carbon emissions, and cut metal recovery costs,
-          we developed a novel biological solution.
+          To address these growing challenges, we have developed a novel biological solution.
         </p>
         <p>
           We use naturally enriched functional microorganisms to recover metals 
@@ -376,12 +369,10 @@
           (including CH<sub>4</sub> and CO<sub>2</sub>) from landfills, syngases, or wastewater treatment plants.
         </p>
         <p>
-          This process simultaneously cuts greenhouse gas emissions and recovers valuable metals from 
-          electronic waste, spent batteries, or tailings. We are also advancing carbon utilization platforms to move toward zero-carbon solutions.
+          This process simultaneously cuts greenhouse gas emissions and recovers valuable metals from electronic waste, spent batteries, or tailings. We are also advancing carbon utilization platforms to move toward zero-carbon solutions.
         </p>
         <p>
-          We welcome global partnerships with e-waste recyclers, battery manufacturers, tailings operators, landfill gas suppliers, and wastewater treatment plants 
-          to drive innovation and scale our impact.
+          We welcome global partnerships with e-waste recyclers, battery manufacturers, tailings operators, landfill gas suppliers, and wastewater treatment plants to drive innovation and scale our impact.
         </p>
       </div>
     </div>
@@ -403,12 +394,10 @@
   <section class="section" id="news">
     <h2>News</h2>
     <div class="news-content">
-      <img src="on_prime.png" alt="ON-Prime" />
+      <img src="CSIRO.png" alt="CSIRO ON Prime" />
       <div class="text">
         <p>
-          Our breakthrough technology has been selected for the <strong>CSIRO-ON Prime</strong> program, 
-          Australia’s leading innovation accelerator. We have received enthusiastic feedback from stakeholders and achieved excellent outcomes. 
-          This enables us to refine our solution and fast-track its impact through real-world industry collaboration.
+          Our breakthrough technology has been selected for the <strong>CSIRO-ON Prime</strong> program, Australia’s leading innovation accelerator. We have received enthusiastic feedback from stakeholders and achieved excellent outcomes. This enables us to refine our solution and fast-track its impact through real-world industry collaboration.
         </p>
       </div>
     </div>
@@ -456,13 +445,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
