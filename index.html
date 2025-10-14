@@ -285,6 +285,14 @@
     .contact-info a { color: var(--primary); text-decoration: none; font-weight:700; }
     .contact-info a:hover { text-decoration: underline; }
 
+    /* QR hint text */
+    .qr-hint {
+      margin-top: 8px;
+      font-size: 0.75rem; /* 调小字体 */
+      color: #555;
+      text-align: center;
+    }
+    
     @media (max-width: 760px) {
       .contact-card { flex-direction: column; text-align:center; padding:18px; }
       .contact-info { text-align:center; }
@@ -376,49 +384,45 @@
     </div>
   </section>
 
-  <!-- Contact (moved to bottom; white card for readability) -->
+  <!-- Contact Section with QR integrated -->
   <section class="contact-section" id="contact" aria-label="Contact">
     <div class="contact-card" role="region" aria-labelledby="contactTitle">
+      <!-- 左侧头像 -->
       <div class="contact-photo">
         <img src="wally.JPG" alt="Dr. Suicao (Wally) Wang">
       </div>
+
+      <!-- 中间文字信息 -->
       <div class="contact-info">
         <h3 id="contactTitle">Dr. Suicao (Wally) Wang</h3>
         <p><strong>The University of Queensland</strong>, QLD, Australia</p>
         <p>Founder & Researcher, BioMetaX</p>
         <p>Advancing <strong>GHGs-driven biotechnologies</strong> for metal recovery, greenhouse gas reduction, wastewater remediation, and translational research.</p>
         <p>Email: <a href="mailto:suicao.wang@gmail.com">suicao.wang@gmail.com</a></p>
+        <p>Phone: +61 0 475 934 613</p>
+      </div>
+
+      <!-- 右侧二维码 -->
+      <div class="contact-qr">
+        <div id="qrcode"></div>
+        <div class="qr-hint">Scan to visit BioMetaX</div>
       </div>
     </div>
   </section>
 
   <footer>© 2025 BioMetaX</footer>
 
-  <!-- Optional: QR code script remains in case you still want the QR section later -->
+  <!-- QR Code Script -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <script>
-    // Mobile nav toggle & close on link click
-    const navToggle = document.getElementById('navToggle');
-    const navLinks = document.getElementById('navLinks');
-
-    navToggle.addEventListener('click', () => {
-      const active = navLinks.classList.toggle('active');
-      navLinks.setAttribute('aria-hidden', String(!active));
-    });
-
-    // Close mobile menu when a link is clicked
-    document.querySelectorAll('#navLinks a').forEach(a=>{
-      a.addEventListener('click', ()=> {
-        if (navLinks.classList.contains('active')) {
-          navLinks.classList.remove('active');
-          navLinks.setAttribute('aria-hidden', 'true');
-        }
-      });
-    });
-
-    // Accessibility: allow Enter key on toggle
-    navToggle.addEventListener('keyup', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') navToggle.click();
+    const qrcodeContainer = document.getElementById('qrcode');
+    new QRCode(qrcodeContainer, {
+      text: location.href,
+      width: 140,
+      height: 140,
+      correctLevel: QRCode.CorrectLevel.H
     });
   </script>
+
 </body>
 </html>
